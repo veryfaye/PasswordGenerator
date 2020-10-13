@@ -35,19 +35,20 @@ function generatePassword() {
     }
   }
 
-  while (charactersAvailable[0].value == false && charactersAvailable[1].value == false && charactersAvailable[2].value == false && charactersAvailable[3].value == false) {
+
+  while (charactersAvailable.some((element) => element.value === false)) {
     //request for each character type to be used
     for (i = 0; i < charactersAvailable.length; i++) {
       charactersAvailable[i].value = confirm('Do you want ' + charactersAvailable[i].ch + ' used?')
       console.log(charactersAvailable[i])
     }
 
-
     // if user does not select any characters then start over at lowercase request
-    if (charactersAvailable[0].value == false && charactersAvailable[1].value == false && charactersAvailable[2].value == false && charactersAvailable[3].value == false) {
+    if (charactersAvailable.some((element) => element.value === false)) {
       alert('You must select at least one character type to be in the password. Please try again.')
     }
   }
+
 
   // rewrite characters available object to a characters used object
   for (j = 0; j < charactersAvailable.length; j++) {
