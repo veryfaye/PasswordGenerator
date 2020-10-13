@@ -1,12 +1,13 @@
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
 var charactersAvailable = [
-  { ch: 'lowercase letters', value: false, min: 97, max: 122},
-  { ch: 'uppercase letters', value: false, min: 68, max: 90},
-  { ch: 'numeric values', value: false, min:48, max: 57},
-  { ch: 'special characters', value: false, min:33, max: 47}
+  { ch: 'lowercase letters', value: false, min: 97, max: 122 },
+  { ch: 'uppercase letters', value: false, min: 68, max: 90 },
+  { ch: 'numeric values', value: false, min: 48, max: 57 },
+  { ch: 'special characters', value: false, min: 33, max: 47 }
 ];
 var charactersUsed = [];
+var generatePass = '';
 
 
 // Write password to the #password input
@@ -41,28 +42,35 @@ function generatePassword() {
       console.log(charactersAvailable[i])
     }
 
-    
+
     // if user does not select any characters then start over at lowercase request
-    if(charactersAvailable[0].value == false && charactersAvailable[1].value == false && charactersAvailable[2].value == false && charactersAvailable[3].value == false){
+    if (charactersAvailable[0].value == false && charactersAvailable[1].value == false && charactersAvailable[2].value == false && charactersAvailable[3].value == false) {
       alert('You must select at least one character type to be in the password. Please try again.')
     }
   }
 
   // rewrite characters available object to a characters used object
+  for (j = 0; j < charactersAvailable.length; j++) {
+    if (charactersAvailable[j].value === true) {
+      charactersUsed.push(charactersAvailable[j]);
+    }
 
-  // NOT WORKING YET. NEED TO TAKE A BREAK START HERE TOMORROW!
-  
-  for (j=0;j<charactersAvailable.length;j++){
-    charactersUsed.push(charactersAvailable[i])
   }
   console.log(charactersUsed)
 
-  //generate password:
-  //for i=8 to i<=numChar
-  //randomly generate 0-characters selected max 3
-  //if randomly generated # is lowercase object =>
+  //generate password
+  for (k = 0; k < numChar; k++) {
+    //Randomly select character type
+    var l = Math.floor(Math.random() * charactersUsed.length);
+    console.log('l: ' + l+', char type: '+charactersUsed[l].ch);
 
+    //Get the character from randomly generated ASCII II
+    var randChar = String.fromCharCode(Math.floor(Math.random() * (charactersUsed[l].max-charactersUsed[l].min+1)+charactersUsed[l].min));
+    console.log('randChar: '+randChar)
+    //push character to the password
+    generatePass = generatePass.concat(randChar);
+    console.log(generatePass);
+  }
 
-
-  return 'passwordtext';
+  return generatePass;
 }
