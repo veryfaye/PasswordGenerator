@@ -1,12 +1,13 @@
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
-var numChar = 0;
-var charactersUsed={
-  'lowerCase':false,
-  'upperCase':false,
-  'numeric':false,
-  'special':false
-};
+var charactersAvailable = [
+  { ch: 'lowercase letters', value: false, min: 97, max: 122},
+  { ch: 'uppercase letters', value: false, min: 68, max: 90},
+  { ch: 'numeric values', value: false, min:48, max: 57},
+  { ch: 'special characters', value: false, min:33, max: 47}
+];
+var charactersUsed = [];
+
 
 // Write password to the #password input
 function writePassword() {
@@ -25,26 +26,43 @@ generateBtn.addEventListener("click", writePassword);
 function generatePassword() {
 
   // request number of characters needed for the password. Only allow between 8 and 128 characters
-  while (numChar<8 || numChar>128) {
-    numChar = prompt('How many characters are in this password? Please select between 8 and 128.');
+  var numChar = prompt('How many characters are in this password? Please select between 8 and 128.');
+  while (numChar < 8 || numChar > 128) {
     console.log("Number of characters selected is: " + numChar);
+    if (numChar > 8 || numChar < 128) {
+      numChar = prompt('The number ' + numChar + ' is not within 8 and 128. Please enter again');
+    }
   }
 
-  // request if lowercase letters are included
-  // validate "Lowercase Letters Included" or "Lowercase Letters not Included"
+  while (charactersAvailable[0].value == false && charactersAvailable[1].value == false && charactersAvailable[2].value == false && charactersAvailable[3].value == false) {
+    //request for each character type to be used
+    for (i = 0; i < charactersAvailable.length; i++) {
+      charactersAvailable[i].value = confirm('Do you want ' + charactersAvailable[i].ch + ' used?')
+      console.log(charactersAvailable[i])
+    }
 
-  // request if uppercase letters are included
-  // validate "Uppercase Letters Included" or "Uppercase Letters not Included"
+    
+    // if user does not select any characters then start over at lowercase request
+    if(charactersAvailable[0].value == false && charactersAvailable[1].value == false && charactersAvailable[2].value == false && charactersAvailable[3].value == false){
+      alert('You must select at least one character type to be in the password. Please try again.')
+    }
+  }
 
-  // request if numeric values are included
-  // validate "Numeric Values Included" or "Numeric Values not Included"
+  // rewrite characters available object to a characters used object
 
-  // request if special characters are included
-  // validate "Special Characters Included" or "Special Characters not Included"
+  // NOT WORKING YET. NEED TO TAKE A BREAK START HERE TOMORROW!
+  
+  for (j=0;j<charactersAvailable.length;j++){
+    charactersUsed.push(charactersAvailable[i])
+  }
+  console.log(charactersUsed)
 
-  // if user does not select any characters then start over at lowercase request
+  //generate password:
+  //for i=8 to i<=numChar
+  //randomly generate 0-characters selected max 3
+  //if randomly generated # is lowercase object =>
 
 
 
-  return 'passwordtext'
+  return 'passwordtext';
 }
