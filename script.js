@@ -34,8 +34,7 @@ function generatePassword() {
     if (isNaN(numChar)) {
       numChar = parseInt(
         prompt(
-          numChar +
-            " is not a number. Please enter a number within 8 and 128 again"
+          "A number was not entered. Please enter a number within 8 and 128 again"
         )
       );
     } else if (numChar > 8 || numChar < 128) {
@@ -50,16 +49,12 @@ function generatePassword() {
   }
 
   //confirm all values are false so if the user wants to generate a new password they need to confirm the characters used again
-  for (h=0;h<charactersAvailable.length;h++){
+  for (h = 0; h < charactersAvailable.length; h++) {
     charactersAvailable[h].value = false;
   }
 
-  while (
-    charactersAvailable[0].value == false &&
-    charactersAvailable[1].value == false &&
-    charactersAvailable[2].value == false &&
-    charactersAvailable[3].value == false
-  ) {
+  //while every charactersAvailable value is false then loop
+  while (charactersAvailable.every((element) => element.value === false)) {
     //request for each character type to be used
     for (i = 0; i < charactersAvailable.length; i++) {
       charactersAvailable[i].value = confirm(
@@ -67,21 +62,15 @@ function generatePassword() {
       );
       console.log(charactersAvailable[i]);
     }
-
     // if user does not select any characters then start over at lowercase request
-    if (
-      charactersAvailable[0].value == false &&
-      charactersAvailable[1].value == false &&
-      charactersAvailable[2].value == false &&
-      charactersAvailable[3].value == false
-    ) {
+    if (charactersAvailable.every((element) => element.value === false)) {
       alert(
         "You must select at least one character type to be in the password. Please try again."
       );
     }
   }
 
-  generatePass = '';
+  generatePass = "";
   // rewrite characters available object to a characters used object
   for (j = 0; j < charactersAvailable.length; j++) {
     if (charactersAvailable[j].value === true) {
@@ -99,7 +88,8 @@ function generatePassword() {
     //Get the character from randomly generated ASCII
     var randChar = String.fromCharCode(
       Math.floor(
-        Math.random() * (charactersUsed[l].max - charactersUsed[l].min + 1) + charactersUsed[l].min
+        Math.random() * (charactersUsed[l].max - charactersUsed[l].min + 1) +
+          charactersUsed[l].min
       )
     );
     console.log("randChar: " + randChar);
