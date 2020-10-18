@@ -6,22 +6,22 @@ This webpage is a password generator that uses user inputs to randomly generate 
 
 ## Reference Images
 Ask the user for length of password:
-![Request for Length of Password](/readmeimages/RequestLength.png)
+![Request for Length of Password](/readmeImages/RequestLength.png)
 
 The user did not supply a number for the length:
-![Non Number Entered](/readmeimages/NaNEntered.png)
+![Non Number Entered](/readmeImages/NaNEntered.png)
 
 The user gave a number outside of the listed range:
-![Outside of Range Entered](/readmeimages/OutsideOfRangeEntered.png)
+![Outside of Range Entered](/readmeImages/OutsideOfRangeEntered.png)
 
 Ask the user about character types:
-![Character Type Request](/readmeimages/CharacterTypeRequest.png)
+![Character Type Request](/readmeImages/CharacterTypeRequest.png)
 
 If the user selected cancel on all character types listed:
-![All Character Types are False](/readmeimages/AllCharacterTypesFalse.png)
+![All Character Types are False](/readmeImages/AllCharacterTypesFalse.png)
 
 Randomly generated password:
-![Randomly Generated Password](/readmeimages/RandomPassword.png)
+![Randomly Generated Password](/readmeImages/RandomPassword.png)
 
 ## License
 MIT License
